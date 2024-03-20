@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Game - Kind Of...</title>
+    <style>
+        :root {
+            background-color: #333;
+        }
+
+        body {
+            align-items: center;
+            display: flex;
+            flex-flow: row;
+            height: 100vh;
+            justify-content: center;
+        }
+
+        .arena {
+            box-sizing: border-box;
+            cursor: pointer;
+            display: grid;
+            grid-template: 'a b c' 'd e f' 'g h i';
+            grid-template-columns: auto auto auto;
+            border: 3px solid #ccc;
+            box-sizing: border-box;
+            height: 300px;
+            position: relative;
+            width: 300px;
+        }
+
+        .player {
+            grid-area: e;
+            text-align: center;
+            width: 40px;
+            user-select: none;
+        }
+
+        .top {
+            grid-column: a / c;
+            grid-row: a;
+            height: 130px;
+            transition-duration: 200ms;
+            transition-property: height;
+        }
+
+        .left {
+            grid-column: a;
+            grid-row: a / g;
+            transition-duration: 200ms;
+            transition-property: width;
+            width: 130px;
+        }
+
+        .bottom {
+            grid-column: a / c;
+            grid-row: g;
+            height: 130px;
+            transition-duration: 200ms;
+            transition-property: height;
+        }
+
+        .right {
+            grid-column: c;
+            grid-row: a / g;
+            transition-duration: 200ms;
+            transition-property: width;
+            width: 130px;
+        }
+
+        :root:has(.left:hover) {
+            .left { width: 260px; }
+            .right { width: 0; }
+        }
+
+        :root:has(.top:hover) {
+            .bottom { height: 0; }
+            .top { height: 260px; }
+        }
+
+        :root:has(.right:hover) {
+            .left { width: 0; }
+            .right { width: 300px; }
+        }
+
+        :root:has(.bottom:hover) {
+            .bottom { height: 300px; }
+            .top { height: 0; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="arena">
+        <div class="player">🧙‍♂</div>
+        <div class="top"></div>
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="bottom"></div>
+    </div>
+</body>
+
+</html>
